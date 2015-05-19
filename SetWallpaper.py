@@ -18,7 +18,7 @@ import os
 from PIL import Image
 
 os.system("del /Q *.jpg")
-os.system(r".\wget http://area.sinaapp.com/bingImg?daysAgo=1")
+os.system(r".\wget http://area.sinaapp.com/bingImg?daysAgo=0")
 os.system("rename *.jpg today.jpg")
 
 imagePath = r".\today.jpg"
@@ -27,3 +27,5 @@ im.save(r".\today.bmp", "bmp")
 os.system("SetWallpaper today.bmp")
 os.system("del /Q *.jpg")
 os.system("del /Q *.bmp")
+
+
