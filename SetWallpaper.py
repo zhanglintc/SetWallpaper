@@ -19,12 +19,13 @@ from PIL import Image
 
 os.system("del /Q *.jpg")
 os.system(r".\wget http://area.sinaapp.com/bingImg?daysAgo=0")
-os.system("rename *.jpg today.jpg")
+os.system("rename *.jpg TranscodedWallpaper.jpg")
 
-imagePath = r".\today.jpg"
+imagePath = r".\TranscodedWallpaper.jpg"
 im = Image.open(imagePath)
-im.save(r".\today.bmp", "bmp")
-os.system("SetWallpaper today.bmp")
+im.save(r".\TranscodedWallpaper.bmp", "bmp")
+os.system("xcopy /y .\TranscodedWallpaper.bmp C:\Users\zdsoft\AppData\Roaming\Microsoft\Windows\Themes\\")
+os.system("SetWallpaper C:\Users\zdsoft\AppData\Roaming\Microsoft\Windows\Themes\TranscodedWallpaper.bmp")
 os.system("del /Q *.jpg")
 os.system("del /Q *.bmp")
 
