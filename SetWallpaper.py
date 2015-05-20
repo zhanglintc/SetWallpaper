@@ -24,8 +24,8 @@ os.system("rename *.jpg TranscodedWallpaper.jpg")
 imagePath = r".\TranscodedWallpaper.jpg"
 im = Image.open(imagePath)
 im.save(r".\TranscodedWallpaper.bmp", "bmp")
-os.system("xcopy /y .\TranscodedWallpaper.bmp C:\Users\zdsoft\AppData\Roaming\Microsoft\Windows\Themes\\")
-os.system("SetWallpaper C:\Users\zdsoft\AppData\Roaming\Microsoft\Windows\Themes\TranscodedWallpaper.bmp")
+os.system("xcopy /y .\TranscodedWallpaper.bmp C:\Users\%username%\AppData\Roaming\Microsoft\Windows\Themes\\")
+os.system("SetWallpaper C:\Users\%username%\AppData\Roaming\Microsoft\Windows\Themes\TranscodedWallpaper.bmp")
 os.system("del /Q *.jpg")
 os.system("del /Q *.bmp")
 
