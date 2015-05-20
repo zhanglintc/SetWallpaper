@@ -14,19 +14,21 @@ refer to:
   http://www.tuicool.com/articles/RJNZj2 (如何批量下载bing前20多天的背景图片？)
 """
 
-import os
+import os, sys
 from PIL import Image
 
-os.system("del /Q *.jpg")
-os.system(r".\wget http://area.sinaapp.com/bingImg?daysAgo=0")
-os.system("rename *.jpg TranscodedWallpaper.jpg")
+here = sys.path[0]
 
-imagePath = r".\TranscodedWallpaper.jpg"
+os.system("pushd {target} && del /Q *.jpg".format(target = here))
+os.system("pushd {target} && wget http://area.sinaapp.com/bingImg?daysAgo=0".format(target = here))
+os.system("pushd {target} && rename *.jpg TranscodedWallpaper.jpg".format(target = here))
+
+imagePath = "{target}\TranscodedWallpaper.jpg".format(target = here)
 im = Image.open(imagePath)
-im.save(r".\TranscodedWallpaper.bmp", "bmp")
-os.system("xcopy /y .\TranscodedWallpaper.bmp C:\Users\%username%\AppData\Roaming\Microsoft\Windows\Themes\\")
-os.system("SetWallpaper C:\Users\%username%\AppData\Roaming\Microsoft\Windows\Themes\TranscodedWallpaper.bmp")
-os.system("del /Q *.jpg")
-os.system("del /Q *.bmp")
+im.save("{target}\TranscodedWallpaper.bmp".format(target = here), "bmp")
+os.system("xcopy /y {target}\TranscodedWallpaper.bmp C:\Users\%username%\AppData\Roaming\Microsoft\Windows\Themes\\".format(target = here))
+os.system("pushd {target} && SetWallpaper C:\Users\%username%\AppData\Roaming\Microsoft\Windows\Themes\TranscodedWallpaper.bmp".format(target = here))
+os.system("pushd {target} && del /Q *.jpg".format(target = here))
+os.system("pushd {target} && del /Q *.bmp".format(target = here))
 
 
