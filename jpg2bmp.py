@@ -27,7 +27,7 @@ except IOError:
 
 newFile = imagePath[:-4] + ".bmp"
 print("")
-print("Converting...")
+print("Converting JPG to BMP...")
 im.save(newFile, "bmp")
 print("")
 print("Converted file saved as {}".format(newFile))
