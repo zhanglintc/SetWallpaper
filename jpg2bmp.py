@@ -31,5 +31,6 @@ print("Converting...")
 im.save(newFile, "bmp")
 print("")
 print("Converted file saved as {}".format(newFile))
+print("")
 
 
