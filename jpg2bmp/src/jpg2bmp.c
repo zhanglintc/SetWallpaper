@@ -1091,43 +1091,43 @@ int get_JPEG_buffer(WORD X_image,WORD Y_image, BYTE **address_dest_buffer)
 
 void main(int argc, char *argv[])
 {
- FILE *fp;
- DWORD X_image, Y_image;
- BYTE *our_image_buffer;
- clock_t start_time, finish_time;
- float duration;
+    FILE *fp;
+    DWORD X_image, Y_image;
+    BYTE *our_image_buffer;
+    clock_t start_time, finish_time;
+    float duration;
 
- if (argc<=1) fp=fopen(FileName,"rb");
-  else fp=fopen(argv[1],"rb");
- if (fp==NULL) exitmessage("File not found ?");
- if (!load_JPEG_header(fp,&X_image,&Y_image)) {exitmessage(error_string);return;}
- fclose(fp);
+    if (argc<=1) fp=fopen(FileName,"rb");
+    else fp=fopen(argv[1],"rb");
+    if (fp==NULL) exitmessage("File not found ?");
+    if (!load_JPEG_header(fp,&X_image,&Y_image)) {exitmessage(error_string);return;}
+    fclose(fp);
 
- printf(" X_image = %d\n",X_image);
- printf(" Y_image = %d\n",Y_image);
+    printf(" X_image = %d\n",X_image);
+    printf(" Y_image = %d\n",Y_image);
 
-/*
- printf("Sampling factors: \n");
- printf("Y  : H=%d,V=%d\n", YH,YV);
- printf("Cb : H=%d,V=%d\n", CbH,CbV);
- printf("Cr : H=%d,V=%d\n", CrH,CrV);
- printf("Restart markers  = %d\n", Restart_markers);
- printf("MCU restart = %d\n", MCU_restart);
- getch();
-*/
+    /*
+    printf("Sampling factors: \n");
+    printf("Y  : H=%d,V=%d\n", YH,YV);
+    printf("Cb : H=%d,V=%d\n", CbH,CbV);
+    printf("Cr : H=%d,V=%d\n", CrH,CrV);
+    printf("Restart markers  = %d\n", Restart_markers);
+    printf("MCU restart = %d\n", MCU_restart);
+    getch();
+    */
 
- printf("Decoding JPEG image...\n");
- // main decoder
- start_time = clock();
- decode_JPEG_image();
- printf("Decoding finished.\n");
- 
- finish_time = clock();
- duration = (double)(finish_time - start_time) / CLK_TCK;
- printf( "Time elapsed: %2.1f seconds\n", duration );
+    printf("Decoding JPEG image...\n");
+    // main decoder
+    start_time = clock();
+    decode_JPEG_image();
+    printf("Decoding finished.\n");
 
- if (!get_JPEG_buffer(X_image,Y_image,&our_image_buffer)) {exitmessage(error_string);return;}
+    finish_time = clock();
+    duration = (double)(finish_time - start_time) / CLK_TCK;
+    printf( "Time elapsed: %2.1f seconds\n", duration );
 
- write_buf_to_BMP(our_image_buffer,X_image,Y_image, "image.bmp");
- getch();
+    if (!get_JPEG_buffer(X_image,Y_image,&our_image_buffer)) {exitmessage(error_string);return;}
+
+    write_buf_to_BMP(our_image_buffer,X_image,Y_image, "image.bmp");
+    getch();
 }
