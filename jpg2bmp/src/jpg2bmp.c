@@ -24,7 +24,6 @@ int get_JPEG_buffer(WORD X_image,WORD Y_image, BYTE **address_dest_buffer);
 
 #include <conio.h>
 #include <time.h>
-char *FileName="image.jpg";
 extern char error_string[90];
 
 typedef struct s_BM_header {
@@ -87,7 +86,8 @@ void write_buf_to_BMP(BYTE *im_buffer, WORD X_bitmap, WORD Y_bitmap, char *BMPna
  BH.biClrUsed = 0;	          fwrite(&BH.biClrUsed,4,1,fp_bitmap);
  BH.biClrImportant = 0;	      fwrite(&BH.biClrImportant,4,1,fp_bitmap);
 
- printf("Writing bitmap ...\n");
+ printf("\n");
+ printf("Writing bitmap...\n");
  im_loc_bytes=(DWORD)im_buffer+((DWORD)Y_bitmap-1)*X_bitmap*4;
 
  for (y=0;y<Y_bitmap;y++)
@@ -102,7 +102,7 @@ void write_buf_to_BMP(BYTE *im_buffer, WORD X_bitmap, WORD Y_bitmap, char *BMPna
 	   fwrite(&zero_byte,1,1,fp_bitmap);
    im_loc_bytes-=2L*X_bitmap*4;
   }
- printf("Done.\n");
+ printf("Writing finished\n");
  fclose(fp_bitmap);
 }
 
@@ -1096,15 +1096,35 @@ void main(int argc, char *argv[])
     BYTE *our_image_buffer;
     clock_t start_time, finish_time;
     float duration;
+	char newFile[300] = {0};
 
-    if (argc<=1) fp=fopen(FileName,"rb");
-    else fp=fopen(argv[1],"rb");
-    if (fp==NULL) exitmessage("File not found ?");
-    if (!load_JPEG_header(fp,&X_image,&Y_image)) {exitmessage(error_string);return;}
+    if(argc <= 1) {
+        exitmessage("Usage: jpg2bmp xxx.jpg");
+    }
+    else if(argc > 2) {
+        exitmessage("Error: only support ONE parameter each time");
+    }
+    else {
+		char *imagePath = argv[1];
+		strcpy(newFile, imagePath);
+		strcpy(&newFile[strlen(newFile) - 3], "bmp");
+        fp = fopen(imagePath, "rb");
+    }
+
+    if (fp==NULL) {
+        exitmessage("Error: cannot find such file");
+    }
+    if (!load_JPEG_header(fp,&X_image,&Y_image)) {
+        exitmessage(error_string);return;
+    }
+
     fclose(fp);
 
-    printf(" X_image = %d\n",X_image);
-    printf(" Y_image = %d\n",Y_image);
+	printf("Start converting...\n\n");
+
+	printf("Image size:\n");
+    printf("X_image = %d\n",X_image);
+    printf("Y_image = %d\n",Y_image);
 
     /*
     printf("Sampling factors: \n");
@@ -1116,18 +1136,22 @@ void main(int argc, char *argv[])
     getch();
     */
 
+	printf("\n");
     printf("Decoding JPEG image...\n");
     // main decoder
     start_time = clock();
     decode_JPEG_image();
-    printf("Decoding finished.\n");
-
-    finish_time = clock();
-    duration = (double)(finish_time - start_time) / CLK_TCK;
-    printf( "Time elapsed: %2.1f seconds\n", duration );
+    printf("Decoding finished\n");
 
     if (!get_JPEG_buffer(X_image,Y_image,&our_image_buffer)) {exitmessage(error_string);return;}
 
-    write_buf_to_BMP(our_image_buffer,X_image,Y_image, "image.bmp");
-    getch();
+	write_buf_to_BMP(our_image_buffer,X_image,Y_image, newFile);
+
+	printf("\n");
+	printf("Converted file saved as:\n%s\n", newFile);
+
+	finish_time = clock();
+    duration = (double)(finish_time - start_time) / CLK_TCK;
+	printf("\n");
+    printf( "Time elapsed: %2.1f seconds\n", duration );
 }
