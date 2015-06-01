@@ -1153,5 +1153,5 @@ void main(int argc, char *argv[])
 	finish_time = clock();
     duration = (double)(finish_time - start_time) / CLK_TCK;
 	printf("\n");
-    printf( "Time elapsed: %2.1f seconds\n", duration );
+    printf( "Time elapsed: %2.1f seconds\n\n", duration );
 }
