@@ -13,7 +13,7 @@ REM convert jpg to bmp
 REM copy file to wallpaper folder & set as wallpaper
 REM NOTE: there's no slash between %target% and *.bmp file -> %target%TranscodedWallpaper.bmp
 xcopy /y %target%TranscodedWallpaper.bmp C:\Users\%username%\AppData\Roaming\Microsoft\Windows\Themes\
-%target%\SetWallpaper C:\Users\%username%\AppData\Roaming\Microsoft\Windows\Themes\TranscodedWallpaper.bmp
+%target%\setwall C:\Users\%username%\AppData\Roaming\Microsoft\Windows\Themes\TranscodedWallpaper.bmp
 
 REM remove temp image files
 del /q %target%\*.bmp %target%\*.jpg
