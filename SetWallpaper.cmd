@@ -1,5 +1,8 @@
 @echo off
 
+title Powered by Lane @ZDS
+color 3e
+
 REM this script's path, to support remote call
 set target=%~dp0
 
