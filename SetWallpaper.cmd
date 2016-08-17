@@ -4,23 +4,23 @@ title Powered by Lane @ZDS
 color 3e
 
 REM this script's path, to support remote call
-set target=%~dp0
+set here=%~dp0
 
 REM remove temp image files before download
-del /q %target%\*.bmp %target%\*.jpg
+del /q %here%\*.bmp %here%\*.jpg
 
 REM download image from website & rename
-%target%\wget -P %target% http://area.sinaapp.com/bingImg?daysAgo=0
-rename %target%\*.jpg TranscodedWallpaper.jpg
+%here%\wget -P %here% http://area.sinaapp.com/bingImg?daysAgo=0
+rename %here%\*.jpg TranscodedWallpaper.jpg
 
 REM convert jpg to bmp
-%target%\jpg2bmp.exe %target%\TranscodedWallpaper.jpg
+%here%\jpg2bmp.exe %here%\TranscodedWallpaper.jpg
 
 REM copy file to wallpaper folder & set as wallpaper
-REM NOTE: there's no slash between %target% and *.bmp file -> %target%TranscodedWallpaper.bmp
-xcopy /y %target%TranscodedWallpaper.bmp C:\Users\%username%\AppData\Roaming\Microsoft\Windows\Themes\
-%target%\setwall C:\Users\%username%\AppData\Roaming\Microsoft\Windows\Themes\TranscodedWallpaper.bmp
+REM NOTE: there's no slash between %here% and *.bmp file -> %here%TranscodedWallpaper.bmp
+xcopy /y %here%TranscodedWallpaper.bmp C:\Users\%username%\AppData\Roaming\Microsoft\Windows\Themes\
+%here%\setwall C:\Users\%username%\AppData\Roaming\Microsoft\Windows\Themes\TranscodedWallpaper.bmp
 
 REM remove temp image files
-del /q %target%\*.bmp %target%\*.jpg
+del /q %here%\*.bmp %here%\*.jpg
 
