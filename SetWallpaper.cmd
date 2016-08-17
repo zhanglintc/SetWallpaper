@@ -6,6 +6,9 @@ color 3e
 REM this script's path, to support remote call
 set target=%~dp0
 
+REM remove temp image files before download
+del /q %target%\*.bmp %target%\*.jpg
+
 REM download image from website & rename
 %target%\wget -P %target% http://area.sinaapp.com/bingImg?daysAgo=0
 rename %target%\*.jpg TranscodedWallpaper.jpg
