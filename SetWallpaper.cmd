@@ -10,7 +10,8 @@ REM remove temp image files before download
 del /q %here%\*.bmp %here%\*.jpg
 
 REM download image from website & rename
-REM %here%\wget -P %here% http://area.sinaapp.com/bingImg?daysAgo=0
+REM old invalid address: %here%\wget -P %here% http://area.sinaapp.com/bingImg?daysAgo=0
+REM my address: http://zhanglintc.work:5969/
 %here%\wget -P %here% http://test201514.sinaapp.com/bingPic -O bingPic.jpg
 rename %here%\*.jpg TranscodedWallpaper.jpg
 
