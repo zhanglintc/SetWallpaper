@@ -6,6 +6,10 @@ color 3e
 REM this script's path, to support remote call
 set here=%~dp0
 
+REM if wgetrc file exists, use it
+if exist %here%.wgetrc set WGETRC=%here%.wgetrc
+if exist %here%wgetrc  set WGETRC=%here%wgetrc
+
 REM remove temp image files before download
 del /q %here%\*.bmp %here%\*.jpg
 

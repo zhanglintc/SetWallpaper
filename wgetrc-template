@@ -1,0 +1,8 @@
+# change "proxy.com:8080" to your proxy address
+# rename this file to "wgetrc" or ".wgetrc"
+
+https_proxy = http://proxy.com:8080/
+http_proxy = http://proxy.com:8080/
+ftp_proxy = http://proxy.com:8080/
+
+use_proxy = on
