@@ -10,7 +10,7 @@ REM if wgetrc file exists, use it
 if exist %here%.wgetrc set WGETRC=%here%.wgetrc
 if exist %here%wgetrc  set WGETRC=%here%wgetrc
 ipconfig | findstr asiapacific > nul
-if %ERRORLEVEL% == 1 set WGETRC=""
+if %ERRORLEVEL% == 1 set WGETRC=
 
 REM remove temp image files before download
 del /q %here%\*.bmp %here%\*.jpg
