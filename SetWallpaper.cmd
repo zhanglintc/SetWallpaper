@@ -22,7 +22,7 @@ set /a daysAgo=%errorlevel% - 1
 REM download image from website & rename
 REM old invalid address1: %here%\wget -P %here% http://area.sinaapp.com/bingImg?daysAgo=0
 REM old invalid address2: %here%\wget -P %here% http://test201514.sinaapp.com/bingPic -O %here%\bingPic.jpg
-%here%\wget -P %here% http://ali.zhanglintc.co:5969/?daysAgo=%daysAgo% -O %here%\bingPic.jpg
+%here%\wget -P %here% http://mmrz.zhanglintc.co:5969/?daysAgo=%daysAgo% -O %here%\bingPic.jpg
 rename %here%\*.jpg TranscodedWallpaper.jpg
 
 REM convert jpg to bmp
