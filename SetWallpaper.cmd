@@ -26,7 +26,8 @@ REM old invalid address2: %here%\wget -P %here% http://test201514.sinaapp.com/bi
 rename %here%\*.jpg TranscodedWallpaper.jpg
 
 REM convert jpg to bmp
-%here%\jpg2bmp.exe %here%\TranscodedWallpaper.jpg
+REM %here%\jpg2bmp.exe %here%\TranscodedWallpaper.jpg
+%here%\jpg2bmpcmd\jpg2bmpcmd.exe -i %here%\TranscodedWallpaper.jpg -o %here%
 
 REM copy file to wallpaper folder & set as wallpaper
 REM NOTE: there's no slash between %here% and *.bmp file -> %here%TranscodedWallpaper.bmp

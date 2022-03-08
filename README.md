@@ -13,6 +13,9 @@ Then double click **SetWallpaper.py**.
 ### jpg2bmp:
 **jpg2bmp** folder contains the source file of **jpg2bmp.exe**.
 
+### jpg2bmpcmd:
+Extracted min CLI version from `easy2convert.com/jpg2bmp`, downloaded from [here](https://www.easy2convert.com/jpg2bmp/).
+
 ### Others:
 **setwall.exe**(original named *SetWallpaper.exe*), downloaded from [here](http://www.thoughtasylum.com/blog/2010/6/2/set-windows-wallpaper-from-the-command-line.html).
 
