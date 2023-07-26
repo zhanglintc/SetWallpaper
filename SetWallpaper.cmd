@@ -13,7 +13,14 @@ ipconfig | findstr asiapacific > nul
 if %ERRORLEVEL% == 1 set WGETRC=
 
 REM remove temp image files before download
-del /q %here%\*.bmp %here%\*.jpg
+setlocal enabledelayedexpansion
+for /d %%i in (bmp jpg) do (
+    set img=%here%\*.%%i
+    if exist !img! (
+        del /q !img!
+    )
+)
+endlocal
 
 REM set value to %daysAgo%
 choice /T 2 /D 0 /C 01234567 /M "Choose the day"
